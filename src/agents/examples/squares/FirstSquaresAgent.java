@@ -16,7 +16,6 @@ class FirstSquaresAgent implements AgentProgram {
     FirstSquaresAgent(String color, int depth) {
         maxDepth = depth;
         this.color = color;
-        actions = new HashMap<>();
     }
 
     private boolean terminalState(Board board, int depth){
@@ -32,6 +31,7 @@ class FirstSquaresAgent implements AgentProgram {
     }
 
     private Action alphaBetaSearch(Board board){
+        actions = new HashMap<>();
         int v = maxValue(board, Integer.MIN_VALUE, Integer.MAX_VALUE, 1);
         return actions.get(v);
     }
