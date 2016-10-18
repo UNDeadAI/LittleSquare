@@ -17,11 +17,11 @@ import types.collection.array.MutableArrayCollection;
 public class Vector<T> extends ImmutableVector<T> implements MutableArrayCollection<T> {
     protected int a, b, c;
 
-    protected static final int DEFAULT_C = 144;
-    protected static final int DEFAULT_B = 89;
-    protected static final int DEFAULT_A = 55;
+    private static final int DEFAULT_C = 144;
+    private static final int DEFAULT_B = 89;
+    private static final int DEFAULT_A = 55;
 
-    protected final void find_fib(int s) {
+    private void find_fib(int s) {
         a = DEFAULT_A;
         b = DEFAULT_B;
         c = DEFAULT_C;

@@ -27,63 +27,25 @@ public class Agent implements Runnable {
 
     private AgentArchitecture architecture = null;
 
-    /**
-     * Creates an agent with the given agent architecture and agent program
-     *
-     * @param _architecture Agent Architecture
-     * @param _program      Agent Program
-     */
     public Agent(AgentArchitecture _architecture, AgentProgram _program) {
         program = _program;
         architecture = _architecture;
     }
 
-    /**
-     * Creates an agent with the given agent architecture, the agent program is set to null
-     *
-     * @param _architecture Agent Architecture
-     */
     public Agent(AgentArchitecture _architecture) {
         architecture = _architecture;
     }
 
-    /**
-     * Creates an agent with the given program, the agent architecture is set to null
-     *
-     * @param _program Agent Program
-     */
     public Agent(AgentProgram _program) {
         program = _program;
     }
 
-    /**
-     * Sets the component used for visualizing the agent in the environment
-     *
-     * @param _visualizer Component used for visualizing the agent in the environment
-     */
-    public void setVisualizer(Visualizer _visualizer) {
-        visualizer = _visualizer;
-    }
-
-    /**
-     * Sets the agent program
-     *
-     * @param _program Agent Program
-     */
     public void setProgram(AgentProgram _program) {
         program = _program;
     }
 
-    /**
-     * Gets the agent program
-     *
-     * @return Agent Program
-     */
     public AgentProgram getProgram() { return program; }
 
-    /**
-     * Runs the agent
-     */
     public void run() {
         while (status != Action.DIE) {
             status = Action.CONTINUE;
@@ -91,46 +53,31 @@ public class Agent implements Runnable {
             if (visualizer != null)
                 visualizer.show(this, p);
             Action action = program.compute(p);
-            if (status != Action.ABORT)
-                architecture.act(this, action);
+            if (status != Action.ABORT) {
+                try {
+                    architecture.act(this, action);
+                }
+                catch (Exception ignored){}
+            }
         }
     }
 
-    /**
-     * Initializes the agent
-     */
     public void init() {
         program.init();
     }
 
-    /**
-     * Kills the agent
-     */
     public void die() {
         status = Action.DIE;
     }
 
-    /**
-     * Sets the agent status in CONTINUE, Ready for starting the execution
-     */
     public void live() {
         status = Action.CONTINUE;
     }
 
-    /**
-     * Sets the thread used by the agent
-     *
-     * @param _thread Thread used by the agent
-     */
     public void setThread(Thread _thread) {
         thread = _thread;
     }
 
-    /**
-     * Sends to sleep the agent by the given amont of time
-     *
-     * @param delay Amount of time (in millisecs) the agent will sleep
-     */
     public void sleep(long delay) {
         try {
             Thread.sleep(delay);

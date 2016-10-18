@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package agents.examples.squares;
 
 import agents.Action;
@@ -13,6 +9,7 @@ import types.collection.vector.Vector;
  * @author Jonatan
  */
 class DummySquaresAgentProgram implements AgentProgram {
+
     protected String color;
 
     DummySquaresAgentProgram(String color) {

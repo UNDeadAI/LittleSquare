@@ -41,6 +41,12 @@ public class Board {
         values = init(n, m);
     }
 
+    public Board(Board board){
+        values = new int[board.values.length][board.values[0].length];
+        for(int i = 0; i < values.length; i++)
+            System.arraycopy(board.values[i], 0, values[i], 0, board.values[i].length);
+    }
+
     private boolean invalid(int i, int j, int val) {
         return i < 0 || values.length <= i || j < 0 || values[0].length <= j ||
                 val <= 0 || val > BOTTOM || (values[i][j] & val) == val;
@@ -185,7 +191,7 @@ public class Board {
         }
     }
 
-    public int white_count() {
+    int white_count() {
         int c = 0;
         for (int i = 0; i < values.length; i++) {
             for (int j = 0; j < values[0].length; j++) {
@@ -197,7 +203,7 @@ public class Board {
         return c;
     }
 
-    public int black_count() {
+    int black_count() {
         int c = 0;
         for (int i = 0; i < values.length; i++) {
             for (int j = 0; j < values[0].length; j++) {
@@ -209,7 +215,7 @@ public class Board {
         return c;
     }
 
-    public boolean full() {
+    boolean full() {
         boolean flag = true;
         for (int i = 0; i < values.length && flag; i++) {
             for (int j = 0; j < values[0].length && flag; j++) {
@@ -223,24 +229,23 @@ public class Board {
         Board b = new Board(10);
         System.out.println(b);
         System.out.println("************************************");
-        b.play(true, 4, 6, LEFT);
+        b.play(true, 1, 0, BOTTOM);
         System.out.println(b);
         System.out.println("************************************");
-        b.play(false, 2, 5, LEFT);
+        b.play(true, 1, 0, TOP);
         System.out.println(b);
-        System.out.println("************************************");
-        b.play(false, 8, 3, LEFT);
-        System.out.println(b);
-        System.out.println("************************************");
-        b.play(false, 9, 7, LEFT);
-        System.out.println(b);
-        System.out.println("************************************");
-        b.play(false, 1, 0, BOTTOM);
-        System.out.println(b);
-        System.out.println("************************************");
-        b.play(true, 0, 1, LEFT);
-        System.out.println(b);
-        System.out.println("************************************");
+//        System.out.println("************************************");
+//        b.play(false, 9, 9, RIGHT);
+//        System.out.println(b);
+//        System.out.println("************************************");
+//        b.play(false, 9, 9, BOTTOM);
+//        System.out.println(b);
+//        System.out.println("************************************");
+//        b.play(false, 1, 0, BOTTOM);
+//        System.out.println(b);
+//        System.out.println("************************************");
+//        b.play(true, 0, 1, LEFT);
+//        System.out.println(b);
+//        System.out.println("************************************");
     }
 }
-
