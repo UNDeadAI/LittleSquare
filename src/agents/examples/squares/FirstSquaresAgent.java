@@ -30,12 +30,6 @@ class FirstSquaresAgent implements AgentProgram {
         return b-w;
     }
 
-    private Action alphaBetaSearch(Board board){
-        actions = new HashMap<>();
-        int v = maxValue(board, Integer.MIN_VALUE, Integer.MAX_VALUE, 1);
-        return actions.get(v);
-    }
-
     private void act(int i, int j, String s, Board board){
         int side = 0;
         if (s.equals(Squares.LEFT)) side = Board.LEFT;
@@ -45,38 +39,24 @@ class FirstSquaresAgent implements AgentProgram {
         board.play(color.equals(Squares.WHITE), i, j, side);
     }
 
+    private Action alphaBetaSearch(Board board){
+        actions = new HashMap<>();
+        int v = maxValue(board, Integer.MIN_VALUE, Integer.MAX_VALUE, 1);
+        return actions.get(v);
+    }
+
     private int maxValue(Board board, int alpha, int beta, int depth){
         if (terminalState(board, depth)) return utility(board);
         int v = Integer.MIN_VALUE;
         Board tmp;
         for(int i = 0; i < size; i++){
             for(int j = 0; j < size; j++){
-                if(SquaresPercept.checkMove(i, j, Squares.LEFT, board).equals(Squares.FALSE)) {
-                    tmp = new Board(board);
-                    act(i, j, Squares.LEFT, tmp);
-                    v = Math.max(v, minValue(tmp, alpha, beta, depth+1));
-                    if(depth == 1)
-                        actions.put(v, new Action(i + ":" + j + ":" + Squares.LEFT));
-                    if(v >= beta)
-                        return v;
-                    alpha = Math.max(v, alpha);
-                }
                 if(SquaresPercept.checkMove(i, j, Squares.RIGHT, board).equals(Squares.FALSE)) {
                     tmp = new Board(board);
                     act(i, j, Squares.RIGHT, tmp);
                     v = Math.max(v, minValue(tmp, alpha, beta, depth+1));
                     if(depth == 1)
                         actions.put(v, new Action(i + ":" + j + ":" + Squares.RIGHT));
-                    if(v >= beta)
-                        return v;
-                    alpha = Math.max(v, alpha);
-                }
-                if(SquaresPercept.checkMove(i, j, Squares.TOP, board).equals(Squares.FALSE)) {
-                    tmp = new Board(board);
-                    act(i, j, Squares.TOP, tmp);
-                    v = Math.max(v, minValue(tmp, alpha, beta, depth+1));
-                    if(depth == 1)
-                        actions.put(v, new Action(i + ":" + j + ":" + Squares.TOP));
                     if(v >= beta)
                         return v;
                     alpha = Math.max(v, alpha);
@@ -102,25 +82,9 @@ class FirstSquaresAgent implements AgentProgram {
         Board tmp;
         for(int i = 0; i < size; i++){
             for(int j = 0; j < size; j++){
-                if(SquaresPercept.checkMove(i, j, Squares.LEFT, board).equals(Squares.FALSE)) {
-                    tmp = new Board(board);
-                    act(i, j, Squares.LEFT, tmp);
-                    v = Math.min(v, maxValue(tmp, alpha, beta, depth+1));
-                    if(v <= alpha)
-                        return v;
-                    beta = Math.min(v, beta);
-                }
                 if(SquaresPercept.checkMove(i, j, Squares.RIGHT, board).equals(Squares.FALSE)) {
                     tmp = new Board(board);
                     act(i, j, Squares.RIGHT, tmp);
-                    v = Math.min(v, maxValue(tmp, alpha, beta, depth+1));
-                    if(v <= alpha)
-                        return v;
-                    beta = Math.min(v, beta);
-                }
-                if(SquaresPercept.checkMove(i, j, Squares.TOP, board).equals(Squares.FALSE)) {
-                    tmp = new Board(board);
-                    act(i, j, Squares.TOP, tmp);
                     v = Math.min(v, maxValue(tmp, alpha, beta, depth+1));
                     if(v <= alpha)
                         return v;
@@ -141,10 +105,6 @@ class FirstSquaresAgent implements AgentProgram {
 
     @Override
     public Action compute(Percept percept){
-        long time = (long) (200 * Math.random());
-        try {
-            Thread.sleep(time);
-        } catch (Exception ignored) {}
         if (percept.getAttribute(Squares.TURN).equals(color)) {
             size = Integer.parseInt((String) percept.getAttribute(Squares.SIZE));
             return alphaBetaSearch(((SquaresPercept) percept).board);

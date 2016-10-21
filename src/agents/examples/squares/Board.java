@@ -96,7 +96,7 @@ public class Board {
         }
     }
 
-    public boolean play(boolean white, int i, int j, int val) {
+    boolean play(boolean white, int i, int j, int val) {
         if (invalid(i, j, val))
             return false;
         values[i][j] |= val;
@@ -217,11 +217,10 @@ public class Board {
 
     boolean full() {
         boolean flag = true;
-        for (int i = 0; i < values.length && flag; i++) {
-            for (int j = 0; j < values[0].length && flag; j++) {
-                flag &= (lines(i, j) == 4);
-            }
-        }
+        for (int i = 0; i < values.length && flag; i++)
+            for (int j = 0; j < values[0].length && flag; j++)
+                flag = (lines(i, j) == 4);
+
         return flag;
     }
 
@@ -232,14 +231,14 @@ public class Board {
         b.play(true, 1, 0, BOTTOM);
         System.out.println(b);
         System.out.println("************************************");
-        b.play(true, 1, 0, TOP);
+        b.play(true, 9, 8, LEFT);
         System.out.println(b);
-//        System.out.println("************************************");
-//        b.play(false, 9, 9, RIGHT);
-//        System.out.println(b);
-//        System.out.println("************************************");
-//        b.play(false, 9, 9, BOTTOM);
-//        System.out.println(b);
+        System.out.println("************************************");
+        b.play(false, 9, 7, LEFT);
+        System.out.println(b);
+        System.out.println("************************************");
+        b.play(false, 8, 8, RIGHT);
+        System.out.println(b);
 //        System.out.println("************************************");
 //        b.play(false, 1, 0, BOTTOM);
 //        System.out.println(b);

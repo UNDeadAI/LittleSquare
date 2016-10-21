@@ -12,8 +12,8 @@ import agents.Agent;
 public class SquaresMain {
 
     public static void main(String[] argv) {
-        Agent w_agent = new Agent(new FirstSquaresAgent(Squares.WHITE, 3));
-        Agent b_agent = new Agent(new FirstSquaresAgent(Squares.BLACK, 3));
+        Agent w_agent = new Agent(new FirstSquaresAgent(Squares.WHITE, 1));
+        Agent b_agent = new Agent(new FirstSquaresAgent(Squares.BLACK, 1));
         SquaresMainFrame frame = new SquaresMainFrame(w_agent, b_agent);
         frame.setVisible(true);
     }
