@@ -9,15 +9,15 @@ import unalcol.agents.examples.squares.SquaresPercept;
 
 import java.util.HashMap;
 
-class FirstSquaresAgent implements AgentProgram {
+public class FirstSquaresAgent implements AgentProgram {
 
     protected String color;
     private int size;
     private int maxDepth;
     private HashMap<Integer, Action> actions;
-    private Percept percept;
+    private SquaresPercept percept;
 
-    FirstSquaresAgent(String color, int depth) {
+    public FirstSquaresAgent(String color, int depth) {
         maxDepth = depth;
         this.color = color;
     }
@@ -43,10 +43,10 @@ class FirstSquaresAgent implements AgentProgram {
         board.play(color.equals(Squares.WHITE), i, j, side);
     }
 
-    private Action alphaBetaSearch(Percept p, Board board) {
+    private Action alphaBetaSearch(SquaresPercept p) {
         actions = new HashMap<>();
         percept = p;
-        int v = maxValue(board, Integer.MIN_VALUE, Integer.MAX_VALUE, 1);
+        int v = maxValue(percept.board, Integer.MIN_VALUE, Integer.MAX_VALUE, 1);
         return actions.get(v);
     }
 
@@ -112,7 +112,7 @@ class FirstSquaresAgent implements AgentProgram {
     public Action compute(Percept percept) {
         if (percept.getAttribute(Squares.TURN).equals(color)) {
             size = Integer.parseInt((String) percept.getAttribute(Squares.SIZE));
-            return alphaBetaSearch(((SquaresPercept) percept).board);
+            return alphaBetaSearch(((SquaresPercept) percept));
         }
         return new Action(Squares.PASS);
     }
