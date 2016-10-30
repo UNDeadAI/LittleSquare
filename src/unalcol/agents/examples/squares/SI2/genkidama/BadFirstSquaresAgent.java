@@ -6,9 +6,10 @@ import unalcol.agents.Percept;
 import unalcol.agents.examples.squares.Squares;
 import unalcol.agents.examples.squares.SquaresPercept;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
-public class FirstSquaresAgent implements AgentProgram {
+public class BadFirstSquaresAgent implements AgentProgram {
 
     protected String color;
     private int size;
@@ -17,7 +18,7 @@ public class FirstSquaresAgent implements AgentProgram {
     private SquaresPercept percept;
     private SimulatedBoard board;
 
-    public FirstSquaresAgent(String color, int depth) {
+    public BadFirstSquaresAgent(String color, int depth) {
         maxDepth = depth;
         this.color = color;
         board = new SimulatedBoard(size);
@@ -27,9 +28,13 @@ public class FirstSquaresAgent implements AgentProgram {
         return depth > maxDepth || board.full();
     }
 
-    private int utility(SimulatedBoard board) {
-        int w = board.white_count();
-        int b = board.black_count();
+    private int utility(ArrayList<String> moves) {
+        SimulatedBoard simulatedBoard = new SimulatedBoard(board);
+        for (String s : moves)
+            act(color.equals(Squares.WHITE), s, simulatedBoard);
+
+        int w = simulatedBoard.white_count();
+        int b = simulatedBoard.black_count();
         if (color.equals(Squares.WHITE))
             return w - b;
         return b - w;
@@ -63,8 +68,8 @@ public class FirstSquaresAgent implements AgentProgram {
         }
 
         actions = new HashMap<>();
-        SimulatedBoard b = new SimulatedBoard(board);
-        int v = maxValue(Integer.MIN_VALUE, Integer.MAX_VALUE, b, 1);
+        ArrayList<String> moves = new ArrayList<>();
+        int v = maxValue(Integer.MIN_VALUE, Integer.MAX_VALUE, moves, 1);
         Action a = actions.get(v);
         if(a != null) {
             act(color.equals(Squares.WHITE), a.getCode(), board);
@@ -73,18 +78,18 @@ public class FirstSquaresAgent implements AgentProgram {
         return new Action(0 + ":" + 0 + ":" + Squares.BOTTOM);
     }
 
-    private int maxValue(int alpha, int beta, SimulatedBoard board, int depth) {
-        if (terminalState(depth)) return utility(board);
+    private int maxValue(int alpha, int beta, ArrayList<String> moves, int depth) {
+        if (terminalState(depth)) return utility(moves);
         int v = Integer.MIN_VALUE;
-        SimulatedBoard tmp;
+        ArrayList<String> tmp;
         String action;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
 
                 action = i + ":" + j + ":" + Squares.RIGHT;
                 if (percept.getAttribute(action).equals(Squares.FALSE)) {
-                    tmp = new SimulatedBoard(board);
-                    act(color.equals(Squares.WHITE), action, tmp);
+                    tmp = new ArrayList<>(moves);
+                    tmp.add(action);
                     v = Math.max(v, minValue(alpha, beta, tmp, depth + 1));
                     if (depth == 1)
                         actions.put(v, new Action(action));
@@ -95,8 +100,8 @@ public class FirstSquaresAgent implements AgentProgram {
 
                 action = i + ":" + j + ":" + Squares.BOTTOM;
                 if (percept.getAttribute(action).equals(Squares.FALSE)) {
-                    tmp = new SimulatedBoard(board);
-                    act(color.equals(Squares.WHITE), action, tmp);
+                    tmp = new ArrayList<>(moves);
+                    tmp.add(action);
                     v = Math.max(v, minValue(alpha, beta, tmp, depth + 1));
                     if (depth == 1)
                         actions.put(v, new Action(action));
@@ -109,18 +114,18 @@ public class FirstSquaresAgent implements AgentProgram {
         return v;
     }
 
-    private int minValue(int alpha, int beta, SimulatedBoard board, int depth) {
-        if (terminalState(depth)) return utility(board);
+    private int minValue(int alpha, int beta, ArrayList<String> moves, int depth) {
+        if (terminalState(depth)) return utility(moves);
         int v = Integer.MAX_VALUE;
-        SimulatedBoard tmp;
+        ArrayList<String> tmp;
         String action;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
 
                 action = i + ":" + j + ":" + Squares.RIGHT;
                 if (percept.getAttribute(action).equals(Squares.FALSE)) {
-                    tmp = new SimulatedBoard(board);
-                    act(color.equals(Squares.WHITE), action, tmp);
+                    tmp = new ArrayList<>(moves);
+                    tmp.add(action);
                     v = Math.min(v, maxValue(alpha, beta, tmp, depth + 1));
                     if (v <= alpha)
                         return v;
@@ -129,8 +134,8 @@ public class FirstSquaresAgent implements AgentProgram {
 
                 action = i + ":" + j + ":" + Squares.BOTTOM;
                 if (percept.getAttribute(action).equals(Squares.FALSE)) {
-                    tmp = new SimulatedBoard(board);
-                    act(color.equals(Squares.WHITE), action, tmp);
+                    tmp = new ArrayList<>(moves);
+                    tmp.add(action);
                     v = Math.min(v, maxValue(alpha, beta, tmp, depth + 1));
                     if (v <= alpha)
                         return v;

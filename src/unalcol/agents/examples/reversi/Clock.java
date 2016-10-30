@@ -74,6 +74,7 @@ public class Clock {
             long delta = System.currentTimeMillis() - start_time;
             time -= delta;
         }
+
         return time_format(time);
     }
 
