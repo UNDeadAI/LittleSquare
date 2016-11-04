@@ -12,6 +12,7 @@ public class SimulatedBoard {
     public int n;
 
     public SimulatedBoard(SimulatedBoard board){
+        n = board.n;
         values = new int[n][n];
         for (int i = 0; i < n; i++)
             System.arraycopy(board.values[i], 0, values[i], 0, n);
@@ -149,28 +150,26 @@ public class SimulatedBoard {
         return flag;
     }
 
-    public static void main(String[] args) {
-        SimulatedBoard b = new SimulatedBoard(10);
-        System.out.println(b);
-        System.out.println("************************************");
-        b.play(true, 4, 6, LEFT);
-        System.out.println(b);
-        System.out.println("************************************");
-        b.play(false, 2, 5, LEFT);
-        System.out.println(b);
-        System.out.println("************************************");
-        b.play(false, 8, 3, LEFT);
-        System.out.println(b);
-        System.out.println("************************************");
-        b.play(false, 9, 7, LEFT);
-        System.out.println(b);
-        System.out.println("************************************");
-        b.play(false, 1, 0, BOTTOM);
-        System.out.println(b);
-        System.out.println("************************************");
-        b.play(true, 0, 1, LEFT);
-        System.out.println(b);
-        System.out.println("************************************");
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j < values[0].length; j++) {
+            sb.append(' ');
+            if ((values[0][j] & TOP) == TOP) sb.append('_');
+            else sb.append(' ');
+        }
+        sb.append('\n');
+        for (int i = 0; i < values.length; i++) {
+            for (int j = 0; j < values[i].length; j++) {
+                if ((values[i][j] & LEFT) == LEFT) sb.append('|');
+                else sb.append(' ');
+                if ((values[i][j] & BOTTOM) == BOTTOM) sb.append('_');
+                else sb.append(' ');
+            }
+            if ((values[i][values[i].length - 1] & RIGHT) == RIGHT) sb.append('|');
+            else sb.append(' ');
+            sb.append('\n');
+        }
+        return sb.toString();
     }
 }
 

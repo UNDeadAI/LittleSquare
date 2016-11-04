@@ -10,9 +10,8 @@ import java.util.HashMap;
 
 public class FirstSquaresAgent implements AgentProgram {
 
-    protected String color;
-    private int size;
-    private int maxDepth;
+    private String color, time;
+    private int size, maxDepth;
     private HashMap<Integer, Action> actions;
     private SquaresPercept percept;
     private SimulatedBoard board;
@@ -23,7 +22,7 @@ public class FirstSquaresAgent implements AgentProgram {
         board = new SimulatedBoard(size);
     }
 
-    private boolean terminalState(int depth) {
+    private boolean terminalState(int depth, SimulatedBoard board) {
         return depth > maxDepth || board.full();
     }
 
@@ -35,7 +34,7 @@ public class FirstSquaresAgent implements AgentProgram {
         return b - w;
     }
 
-    private void act(boolean whiteTurn, String action, SimulatedBoard board) {
+    private void act(boolean whiteTurn, String action, SimulatedBoard b) {
         String[] code = action.split(":");
         int i = Integer.parseInt(code[0]);
         int j = Integer.parseInt(code[1]);
@@ -45,7 +44,7 @@ public class FirstSquaresAgent implements AgentProgram {
         if (code[2].equals(Squares.RIGHT)) side = SimulatedBoard.RIGHT;
         if (code[2].equals(Squares.BOTTOM)) side = SimulatedBoard.BOTTOM;
 
-        board.play(whiteTurn, i, j, side);
+        b.play(whiteTurn, i, j, side);
     }
 
     private Action alphaBetaSearch() {
@@ -53,29 +52,27 @@ public class FirstSquaresAgent implements AgentProgram {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 action = i + ":" + j + ":" + Squares.RIGHT;
-                if (percept.getAttribute(action).equals(Squares.TRUE))
+                if (percept.getAttribute(action).equals(Squares.TRUE) && !((board.values[i][j] & SimulatedBoard.RIGHT) ==
+                        SimulatedBoard.RIGHT))
                     act(!color.equals(Squares.WHITE), action, board);
 
                 action = i + ":" + j + ":" + Squares.BOTTOM;
-                if (percept.getAttribute(action).equals(Squares.TRUE))
+                if (percept.getAttribute(action).equals(Squares.TRUE) && !((board.values[i][j] & SimulatedBoard.BOTTOM) ==
+                        SimulatedBoard.BOTTOM))
                     act(!color.equals(Squares.WHITE), action, board);
             }
         }
 
         actions = new HashMap<>();
-        SimulatedBoard b = new SimulatedBoard(board);
-        int v = maxValue(Integer.MIN_VALUE, Integer.MAX_VALUE, b, 1);
+        int v = maxValue(Integer.MIN_VALUE, Integer.MAX_VALUE, board, 1);
         Action a = actions.get(v);
-        if(a != null) {
-            act(color.equals(Squares.WHITE), a.getCode(), board);
-            return actions.get(v);
-        }
-        return new Action(0 + ":" + 0 + ":" + Squares.BOTTOM);
+        act(color.equals(Squares.WHITE), a.getCode(), board);
+        return a;
     }
 
     private int maxValue(int alpha, int beta, SimulatedBoard board, int depth) {
-        if (terminalState(depth)) return utility(board);
-        int v = Integer.MIN_VALUE;
+        if (terminalState(depth, board)) return utility(board);
+        int v = Integer.MIN_VALUE, tmp2;
         SimulatedBoard tmp;
         String action;
         for (int i = 0; i < size; i++) {
@@ -85,9 +82,10 @@ public class FirstSquaresAgent implements AgentProgram {
                 if (percept.getAttribute(action).equals(Squares.FALSE)) {
                     tmp = new SimulatedBoard(board);
                     act(color.equals(Squares.WHITE), action, tmp);
-                    v = Math.max(v, minValue(alpha, beta, tmp, depth + 1));
+                    tmp2 = minValue(alpha, beta, tmp, depth + 1);
                     if (depth == 1)
-                        actions.put(v, new Action(action));
+                        actions.put(tmp2, new Action(action));
+                    v = Math.max(v, tmp2);
                     if (v >= beta)
                         return v;
                     alpha = Math.max(v, alpha);
@@ -97,9 +95,10 @@ public class FirstSquaresAgent implements AgentProgram {
                 if (percept.getAttribute(action).equals(Squares.FALSE)) {
                     tmp = new SimulatedBoard(board);
                     act(color.equals(Squares.WHITE), action, tmp);
-                    v = Math.max(v, minValue(alpha, beta, tmp, depth + 1));
+                    tmp2 = minValue(alpha, beta, tmp, depth + 1);
                     if (depth == 1)
-                        actions.put(v, new Action(action));
+                        actions.put(tmp2, new Action(action));
+                    v = Math.max(v, tmp2);
                     if (v >= beta)
                         return v;
                     alpha = Math.max(v, alpha);
@@ -110,7 +109,7 @@ public class FirstSquaresAgent implements AgentProgram {
     }
 
     private int minValue(int alpha, int beta, SimulatedBoard board, int depth) {
-        if (terminalState(depth)) return utility(board);
+        if (terminalState(depth, board)) return utility(board);
         int v = Integer.MAX_VALUE;
         SimulatedBoard tmp;
         String action;
@@ -120,7 +119,7 @@ public class FirstSquaresAgent implements AgentProgram {
                 action = i + ":" + j + ":" + Squares.RIGHT;
                 if (percept.getAttribute(action).equals(Squares.FALSE)) {
                     tmp = new SimulatedBoard(board);
-                    act(color.equals(Squares.WHITE), action, tmp);
+                    act(!color.equals(Squares.WHITE), action, tmp);
                     v = Math.min(v, maxValue(alpha, beta, tmp, depth + 1));
                     if (v <= alpha)
                         return v;
@@ -130,7 +129,7 @@ public class FirstSquaresAgent implements AgentProgram {
                 action = i + ":" + j + ":" + Squares.BOTTOM;
                 if (percept.getAttribute(action).equals(Squares.FALSE)) {
                     tmp = new SimulatedBoard(board);
-                    act(color.equals(Squares.WHITE), action, tmp);
+                    act(!color.equals(Squares.WHITE), action, tmp);
                     v = Math.min(v, maxValue(alpha, beta, tmp, depth + 1));
                     if (v <= alpha)
                         return v;
@@ -149,7 +148,13 @@ public class FirstSquaresAgent implements AgentProgram {
             String s = (color.equals(Squares.WHITE) ? Squares.WHITE : Squares.BLACK) + "_" + Squares.TIME, s2;
             s2 = (String) p.getAttribute(s);
 
-            if (s2.equals("0:0:10:0") || s2.equals("0:0:0:0"))
+            if( time == null){
+                time = s2;
+                board = new SimulatedBoard(size);
+            }
+            else if( time.compareTo(s2) >= 0 )
+                time = s2;
+            else
                 board = new SimulatedBoard(size);
 
             if (size2 != size) {
@@ -165,6 +170,5 @@ public class FirstSquaresAgent implements AgentProgram {
     }
 
     @Override
-    public void init() {
-    }
+    public void init() {}
 }

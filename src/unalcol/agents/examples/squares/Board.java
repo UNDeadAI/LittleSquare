@@ -220,24 +220,27 @@ public class Board {
 
     public static void main(String[] args) {
         Board b = new Board(10);
+        System.out.println("************************************");
+        System.out.println(b.play(false, 8, 1, BOTTOM));
+        System.out.println( (b.values[8][1] & BOTTOM) == BOTTOM );
+        System.out.println( (b.values[9][1] & TOP) == TOP );
+        System.out.println(b.white_count() + " " + b.black_count());
         System.out.println(b);
         System.out.println("************************************");
-        b.play(true, 4, 6, LEFT);
+        System.out.println(b.play(true, 1, 1, RIGHT));
+        System.out.println(b.white_count() + " " + b.black_count());
         System.out.println(b);
         System.out.println("************************************");
-        b.play(false, 2, 5, LEFT);
+        System.out.println(b.play(true, 10, 10, RIGHT));
         System.out.println(b);
         System.out.println("************************************");
-        b.play(false, 8, 3, LEFT);
+        System.out.println(b.play(true, 3, 4, RIGHT));
         System.out.println(b);
         System.out.println("************************************");
-        b.play(false, 9, 7, LEFT);
+        System.out.println(b.play(true, 5, 1, RIGHT));
         System.out.println(b);
         System.out.println("************************************");
-        b.play(false, 1, 0, BOTTOM);
-        System.out.println(b);
-        System.out.println("************************************");
-        b.play(true, 0, 1, LEFT);
+        System.out.println(b.play(true, 5, 4, RIGHT));
         System.out.println(b);
         System.out.println("************************************");
     }

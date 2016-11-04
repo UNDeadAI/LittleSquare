@@ -36,7 +36,7 @@ public class SquaresPercept extends Percept {
             int i = Integer.parseInt(v[0]);
             int j = Integer.parseInt(v[1]);
             if (v[2].equals(Squares.LEFT))
-                if ((board.values[i][j] & Board.LEFT) == Board.LEFT) return Squares.TRUE;
+                if ( (board.values[i][j] & Board.LEFT) == Board.LEFT ) return Squares.TRUE;
                 else return Squares.FALSE;
             if (v[2].equals(Squares.TOP))
                 if ((board.values[i][j] & Board.TOP) == Board.TOP) return Squares.TRUE;
