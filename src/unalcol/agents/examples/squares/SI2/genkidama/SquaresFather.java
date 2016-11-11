@@ -24,7 +24,11 @@ public abstract class SquaresFather implements AgentProgram {
         return b - w;
     }
 
-    void act(boolean whiteTurn, String action, SimulatedBoard b) {
+    void act(SimulatedBoard b, int i, int j, int side, boolean turn) {
+        b.play(color.equals(Squares.WHITE) & turn, i, j, side);
+    }
+
+    void act2(boolean whiteTurn, String action, SimulatedBoard b) {
         String[] code = action.split(":");
         int i = Integer.parseInt(code[0]);
         int j = Integer.parseInt(code[1]);
@@ -35,6 +39,20 @@ public abstract class SquaresFather implements AgentProgram {
         if (code[2].equals(Squares.BOTTOM)) side = SimulatedBoard.BOTTOM;
 
         b.play(whiteTurn, i, j, side);
+    }
+
+    void updateBoard(){
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if ( percept.getAttribute(i + ":" + j + ":" + Squares.RIGHT).equals(Squares.TRUE) &&
+                        !( ( board.values[i][j] & SimulatedBoard.RIGHT ) == SimulatedBoard.RIGHT ) )
+                    act( board, i, j, SimulatedBoard.RIGHT, true );
+
+                if ( percept.getAttribute(i + ":" + j + ":" + Squares.BOTTOM).equals(Squares.TRUE) &&
+                        !( ( board.values[i][j] & SimulatedBoard.BOTTOM ) == SimulatedBoard.BOTTOM ) )
+                    act( board, i, j, SimulatedBoard.BOTTOM, true );
+            }
+        }
     }
 
     @Override
@@ -60,21 +78,6 @@ public abstract class SquaresFather implements AgentProgram {
             }
 
             percept = (SquaresPercept) p;
-
-            String action;
-            for (int i = 0; i < size; i++) {
-                for (int j = 0; j < size; j++) {
-                    action = i + ":" + j + ":" + Squares.RIGHT;
-                    if ( percept.getAttribute(action).equals(Squares.TRUE) &&
-                            !( ( board.values[i][j] & SimulatedBoard.RIGHT ) == SimulatedBoard.RIGHT ) )
-                        act( !color.equals(Squares.WHITE), action, board );
-
-                    action = i + ":" + j + ":" + Squares.BOTTOM;
-                    if ( percept.getAttribute(action).equals(Squares.TRUE) &&
-                            !( ( board.values[i][j] & SimulatedBoard.BOTTOM ) == SimulatedBoard.BOTTOM ) )
-                        act( !color.equals(Squares.WHITE), action, board );
-                }
-            }
 
             return play();
         }

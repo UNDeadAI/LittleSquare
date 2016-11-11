@@ -21,10 +21,10 @@ public class DummySquaresAgentProgram implements AgentProgram {
 
     @Override
     public Action compute(Percept p) {
-//        long time = (long) (200 * Math.random());
+//        long time = 2000;
 //        try {
 //            Thread.sleep(time);
-//        } catch (Exception e) {
+//        } catch (Exception ignored) {
 //        }
         if (p.getAttribute(Squares.TURN).equals(color)) {
             int size = Integer.parseInt((String) p.getAttribute(Squares.SIZE));
@@ -49,8 +49,6 @@ public class DummySquaresAgentProgram implements AgentProgram {
     }
 
     @Override
-    public void init() {
-    }
-
+    public void init() {}
 }
 
