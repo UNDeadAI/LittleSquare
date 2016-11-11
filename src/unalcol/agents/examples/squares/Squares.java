@@ -103,6 +103,7 @@ public class Squares extends Environment {
         if (code[2].equals(TOP)) side = Board.TOP;
         if (code[2].equals(RIGHT)) side = Board.RIGHT;
         if (code[2].equals(BOTTOM)) side = Board.BOTTOM;
+        //System.out.println(clock.white_turn() + " " + i  + " " + j + " " + code[2]);
         if (board.play(clock.white_turn(), i, j, side)) {
             clock.swap();
             updateViews("Working");

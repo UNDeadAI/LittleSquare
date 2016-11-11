@@ -40,7 +40,7 @@ public class MiniMaxPlayer extends SquaresFather {
         for ( int i = 0; i < size; i++ ) {
             for ( int j = 0; j < size; j++ ) {
 
-                if ( !( ( board.values[i][j] & SimulatedBoard.RIGHT) == SimulatedBoard.RIGHT ) ) {
+                if ( ( board.values[i][j] & SimulatedBoard.RIGHT ) != SimulatedBoard.RIGHT ) {
                     tmp = new SimulatedBoard(board);
                     act( tmp, i, j, SimulatedBoard.RIGHT, true );
                     tmp2 = minValue( alpha, beta, tmp, depth + 1 );
@@ -52,7 +52,7 @@ public class MiniMaxPlayer extends SquaresFather {
                     alpha = Math.max( v, alpha );
                 }
 
-                if ( !( ( board.values[i][j] & SimulatedBoard.BOTTOM) == SimulatedBoard.BOTTOM ) ) {
+                if ( ( board.values[i][j] & SimulatedBoard.BOTTOM ) != SimulatedBoard.BOTTOM ) {
                     tmp = new SimulatedBoard(board);
                     act( tmp, i, j, SimulatedBoard.BOTTOM, true );
                     tmp2 = minValue(alpha, beta, tmp, depth + 1);
@@ -69,28 +69,28 @@ public class MiniMaxPlayer extends SquaresFather {
     }
 
     private int minValue(int alpha, int beta, SimulatedBoard board, int depth) {
-        if ( terminalState( depth, board ) ) return utility(board);
+        if ( terminalState( depth, board ) ) return utility( board );
         int v = Integer.MAX_VALUE;
         SimulatedBoard tmp;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
 
-                if ( !( ( board.values[i][j] & SimulatedBoard.RIGHT) == SimulatedBoard.RIGHT ) ) {
+                if ( ( board.values[i][j] & SimulatedBoard.RIGHT ) != SimulatedBoard.RIGHT ) {
                     tmp = new SimulatedBoard(board);
                     act( tmp, i, j, SimulatedBoard.RIGHT, false );
-                    v = Math.min(v, maxValue(alpha, beta, tmp, depth + 1));
-                    if (v <= alpha)
+                    v = Math.min( v, maxValue(alpha, beta, tmp, depth + 1 ) );
+                    if ( v <= alpha )
                         return v;
-                    beta = Math.min(v, beta);
+                    beta = Math.min( v, beta );
                 }
 
-                if ( !( ( board.values[i][j] & SimulatedBoard.BOTTOM) == SimulatedBoard.BOTTOM ) ) {
-                    tmp = new SimulatedBoard(board);
+                if ( ( board.values[i][j] & SimulatedBoard.BOTTOM ) == SimulatedBoard.BOTTOM ) {
+                    tmp = new SimulatedBoard( board );
                     act( tmp, i, j, SimulatedBoard.BOTTOM, false );
                     v = Math.min(v, maxValue(alpha, beta, tmp, depth + 1));
-                    if (v <= alpha)
+                    if ( v <= alpha )
                         return v;
-                    beta = Math.min(v, beta);
+                    beta = Math.min( v, beta );
                 }
             }
         }

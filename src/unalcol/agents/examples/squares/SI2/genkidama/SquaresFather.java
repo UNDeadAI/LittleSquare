@@ -7,9 +7,10 @@ import unalcol.agents.Percept;
 import unalcol.agents.examples.squares.Squares;
 import unalcol.agents.examples.squares.SquaresPercept;
 
-public abstract class SquaresFather implements AgentProgram {
+abstract class SquaresFather implements AgentProgram {
 
-    String color, time;
+    String color;
+    private String time;
     int size;
     SquaresPercept percept;
     SimulatedBoard board;
@@ -19,13 +20,14 @@ public abstract class SquaresFather implements AgentProgram {
     int utility(SimulatedBoard board) {
         int w = board.white_count();
         int b = board.black_count();
-        if (color.equals(Squares.WHITE))
+        if ( color.equals( Squares.WHITE ) )
             return w - b;
         return b - w;
     }
 
     void act(SimulatedBoard b, int i, int j, int side, boolean turn) {
-        b.play(color.equals(Squares.WHITE) & turn, i, j, side);
+        boolean tmp = color.equals(Squares.WHITE);
+        b.play( turn == tmp, i, j, side);
     }
 
     void act2(boolean whiteTurn, String action, SimulatedBoard b) {
@@ -45,12 +47,12 @@ public abstract class SquaresFather implements AgentProgram {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 if ( percept.getAttribute(i + ":" + j + ":" + Squares.RIGHT).equals(Squares.TRUE) &&
-                        !( ( board.values[i][j] & SimulatedBoard.RIGHT ) == SimulatedBoard.RIGHT ) )
-                    act( board, i, j, SimulatedBoard.RIGHT, true );
+                        ( board.values[i][j] & SimulatedBoard.RIGHT ) != SimulatedBoard.RIGHT )
+                    act( board, i, j, SimulatedBoard.RIGHT, false );
 
                 if ( percept.getAttribute(i + ":" + j + ":" + Squares.BOTTOM).equals(Squares.TRUE) &&
-                        !( ( board.values[i][j] & SimulatedBoard.BOTTOM ) == SimulatedBoard.BOTTOM ) )
-                    act( board, i, j, SimulatedBoard.BOTTOM, true );
+                        ( board.values[i][j] & SimulatedBoard.BOTTOM ) != SimulatedBoard.BOTTOM )
+                    act( board, i, j, SimulatedBoard.BOTTOM, false );
             }
         }
     }

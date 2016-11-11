@@ -23,7 +23,7 @@ public class QuickSquaresPlayer extends SquaresFather {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
 
-                if ( !( ( board.values[i][j] & SimulatedBoard.RIGHT) == SimulatedBoard.RIGHT ) ) {
+                if ( ( board.values[i][j] & SimulatedBoard.RIGHT) != SimulatedBoard.RIGHT ) {
                     tmp = new SimulatedBoard( board );
                     act( tmp, i, j, SimulatedBoard.RIGHT, true );
                     aux = utility( tmp );
@@ -35,7 +35,7 @@ public class QuickSquaresPlayer extends SquaresFather {
                     }
                 }
 
-                if ( !( ( board.values[i][j] & SimulatedBoard.BOTTOM) == SimulatedBoard.BOTTOM ) ) {
+                if ( ( board.values[i][j] & SimulatedBoard.BOTTOM ) != SimulatedBoard.BOTTOM ) {
                     tmp = new SimulatedBoard( board );
                     act( tmp, i, j, SimulatedBoard.BOTTOM, true );
                     aux = utility( tmp );
