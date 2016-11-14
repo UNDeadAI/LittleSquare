@@ -1,17 +1,17 @@
 package unalcol.agents.examples.squares.SI2.genkidama;
 
-public class SimulatedBoard {
-    public static final int LEFT = 1;
-    public static final int TOP = 2;
-    public static final int RIGHT = 4;
-    public static final int BOTTOM = 8;
+class SimulatedBoard {
+    static final int LEFT = 1;
+    static final int TOP = 2;
+    static final int RIGHT = 4;
+    static final int BOTTOM = 8;
     public static final int WHITE = 16;
 
     public int[][] values;
 
     public int n;
 
-    public SimulatedBoard(SimulatedBoard board){
+    SimulatedBoard(SimulatedBoard board){
         n = board.n;
         values = new int[n][n];
         for (int i = 0; i < n; i++)
@@ -31,21 +31,21 @@ public class SimulatedBoard {
         return values;
     }
 
-    public SimulatedBoard(int n) {
+    SimulatedBoard(int n) {
         this(n, n);
         this.n = n;
     }
 
-    public SimulatedBoard(int n, int m) {
+    private SimulatedBoard(int n, int m) {
         values = init(n, m);
     }
 
-    public boolean invalid(int i, int j, int val) {
+    private boolean invalid(int i, int j, int val) {
         return i < 0 || values.length <= i || j < 0 || values[0].length <= j ||
                 val <= 0 || val > BOTTOM || (values[i][j] & val) == val;
     }
 
-    public int lines(int i, int j) {
+    private int lines(int i, int j) {
         int c = (values[i][j] & LEFT) == LEFT ? 1 : 0;
         c += (values[i][j] & TOP) == TOP ? 1 : 0;
         c += (values[i][j] & RIGHT) == RIGHT ? 1 : 0;
@@ -53,7 +53,7 @@ public class SimulatedBoard {
         return c;
     }
 
-    public boolean closable(int i, int j) {
+    private boolean closable(int i, int j) {
         return lines(i, j) == 3;
     }
 
@@ -116,7 +116,7 @@ public class SimulatedBoard {
         return true;
     }
     
-    public int white_count() {
+    int white_count() {
         int c = 0;
         for (int i = 0; i < values.length; i++) {
             for (int j = 0; j < values[0].length; j++) {
@@ -128,7 +128,7 @@ public class SimulatedBoard {
         return c;
     }
 
-    public int black_count() {
+    int black_count() {
         int c = 0;
         for (int i = 0; i < values.length; i++) {
             for (int j = 0; j < values[0].length; j++) {
@@ -140,7 +140,7 @@ public class SimulatedBoard {
         return c;
     }
 
-    public boolean full() {
+    boolean full() {
         boolean flag = true;
         for (int i = 0; i < values.length && flag; i++) {
             for (int j = 0; j < values[0].length && flag; j++) {
@@ -158,19 +158,18 @@ public class SimulatedBoard {
             else sb.append(' ');
         }
         sb.append('\n');
-        for (int i = 0; i < values.length; i++) {
-            for (int j = 0; j < values[i].length; j++) {
-                if ((values[i][j] & LEFT) == LEFT) sb.append('|');
+        for (int[] value : values) {
+            for (int aValue : value) {
+                if ((aValue & LEFT) == LEFT) sb.append('|');
                 else sb.append(' ');
-                if ((values[i][j] & BOTTOM) == BOTTOM) sb.append('_');
+                if ((aValue & BOTTOM) == BOTTOM) sb.append('_');
                 else sb.append(' ');
             }
-            if ((values[i][values[i].length - 1] & RIGHT) == RIGHT) sb.append('|');
+            if ((value[value.length - 1] & RIGHT) == RIGHT) sb.append('|');
             else sb.append(' ');
             sb.append('\n');
         }
         return sb.toString();
     }
 }
-
 

@@ -2,16 +2,18 @@ package unalcol.agents.examples.squares.SI2.genkidama;
 
 import unalcol.agents.Action;
 import unalcol.agents.examples.squares.Squares;
+import unalcol.agents.examples.squares.SquaresPercept;
 
-public class MeroBob extends SquaresFather {
+class MeroBob extends SquaresAnalyzer {
 
-    public MeroBob(String color) {
-        this.color = color;
-    }
-    
+    MeroBob(SquaresFather father) { super(father); }
+
     @Override
     public Action play() {
-        if (percept.getAttribute(Squares.TURN).equals(color)) {
+        SquaresPercept percept = father.percept;
+        String color = father.color;
+
+        if ( percept.getAttribute(Squares.TURN).equals( color ) ) {
             int size = Integer.parseInt((String) percept.getAttribute(Squares.SIZE));
             int i, j;
             String a;
@@ -40,7 +42,4 @@ public class MeroBob extends SquaresFather {
         }
         return new Action(Squares.PASS);
     }
-
-    @Override
-    public void init() {}
 }

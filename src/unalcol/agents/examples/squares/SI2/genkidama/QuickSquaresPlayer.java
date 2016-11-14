@@ -3,15 +3,19 @@ package unalcol.agents.examples.squares.SI2.genkidama;
 import unalcol.agents.Action;
 import unalcol.agents.examples.squares.Squares;
 
-public class QuickSquaresPlayer extends SquaresFather {
+class QuickSquaresPlayer extends SquaresAnalyzer {
 
-    public QuickSquaresPlayer(String color) {
-        this.color = color;
+    private int size;
+    private SimulatedBoard board;
+
+    QuickSquaresPlayer(SquaresFather father ) {
+        super(father);
     }
 
     @Override
     Action play() {
-        updateBoard();
+        size = father.size;
+        board = father.board;
         return quickPlay();
     }
 
@@ -25,7 +29,7 @@ public class QuickSquaresPlayer extends SquaresFather {
 
                 if ( ( board.values[i][j] & SimulatedBoard.RIGHT) != SimulatedBoard.RIGHT ) {
                     tmp = new SimulatedBoard( board );
-                    act( tmp, i, j, SimulatedBoard.RIGHT, true );
+                    father.act( tmp, i, j, SimulatedBoard.RIGHT, true );
                     aux = utility( tmp );
                     if ( aux >= 0 )
                         return new Action( i + ":" + j + ":" + Squares.RIGHT );
@@ -37,7 +41,7 @@ public class QuickSquaresPlayer extends SquaresFather {
 
                 if ( ( board.values[i][j] & SimulatedBoard.BOTTOM ) != SimulatedBoard.BOTTOM ) {
                     tmp = new SimulatedBoard( board );
-                    act( tmp, i, j, SimulatedBoard.BOTTOM, true );
+                    father.act( tmp, i, j, SimulatedBoard.BOTTOM, true );
                     aux = utility( tmp );
                     if ( aux >= 0 )
                         return new Action( i + ":" + j + ":" + Squares.BOTTOM );

@@ -11,58 +11,45 @@ abstract class SquaresFather implements AgentProgram {
 
     String color;
     private String time;
-    int size;
+    int size, linesAssigned;
     SquaresPercept percept;
     SimulatedBoard board;
 
+    SquaresFather(String color) { this.color = color; }
+
     abstract Action play();
 
-    int utility(SimulatedBoard board) {
-        int w = board.white_count();
-        int b = board.black_count();
-        if ( color.equals( Squares.WHITE ) )
-            return w - b;
-        return b - w;
-    }
-
     void act(SimulatedBoard b, int i, int j, int side, boolean turn) {
-        boolean tmp = color.equals(Squares.WHITE);
+        boolean tmp = color.equals( Squares.WHITE );
         b.play( turn == tmp, i, j, side);
     }
 
-    void act2(boolean whiteTurn, String action, SimulatedBoard b) {
-        String[] code = action.split(":");
-        int i = Integer.parseInt(code[0]);
-        int j = Integer.parseInt(code[1]);
-        int side = 0;
-        if (code[2].equals(Squares.LEFT)) side = SimulatedBoard.LEFT;
-        if (code[2].equals(Squares.TOP)) side = SimulatedBoard.TOP;
-        if (code[2].equals(Squares.RIGHT)) side = SimulatedBoard.RIGHT;
-        if (code[2].equals(Squares.BOTTOM)) side = SimulatedBoard.BOTTOM;
-
-        b.play(whiteTurn, i, j, side);
-    }
-
     void updateBoard(){
+        linesAssigned = 0;
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
-                if ( percept.getAttribute(i + ":" + j + ":" + Squares.RIGHT).equals(Squares.TRUE) &&
-                        ( board.values[i][j] & SimulatedBoard.RIGHT ) != SimulatedBoard.RIGHT )
-                    act( board, i, j, SimulatedBoard.RIGHT, false );
+                if ( percept.getAttribute(i + ":" + j + ":" + Squares.RIGHT ).equals( Squares.TRUE ) ){
+                    linesAssigned++;
+                    if ( ( board.values[i][j] & SimulatedBoard.RIGHT ) != SimulatedBoard.RIGHT )
+                        act( board, i, j, SimulatedBoard.RIGHT, false );
+                }
 
-                if ( percept.getAttribute(i + ":" + j + ":" + Squares.BOTTOM).equals(Squares.TRUE) &&
-                        ( board.values[i][j] & SimulatedBoard.BOTTOM ) != SimulatedBoard.BOTTOM )
-                    act( board, i, j, SimulatedBoard.BOTTOM, false );
+                if ( percept.getAttribute(i + ":" + j + ":" + Squares.BOTTOM ).equals( Squares.TRUE ) ) {
+                    linesAssigned++;
+                    if ( ( board.values[i][j] & SimulatedBoard.BOTTOM ) != SimulatedBoard.BOTTOM )
+                        act( board, i, j, SimulatedBoard.BOTTOM, false );
+                }
             }
         }
+        linesAssigned -= 2*size;
     }
 
     @Override
-    public Action compute(Percept p) {
+    public Action compute( Percept p ) {
         if (p.getAttribute(Squares.TURN).equals(color)) {
             int size2 = Integer.parseInt((String) p.getAttribute(Squares.SIZE));
 
-            String s = (color.equals(Squares.WHITE) ? Squares.WHITE : Squares.BLACK) + "_" + Squares.TIME, s2;
+            String s = ( color.equals(Squares.WHITE) ? Squares.WHITE : Squares.BLACK ) + "_" + Squares.TIME, s2;
             s2 = (String) p.getAttribute(s);
 
             if( time == null){
@@ -81,7 +68,10 @@ abstract class SquaresFather implements AgentProgram {
 
             percept = (SquaresPercept) p;
 
-            return play();
+            Action action = play();
+            if (action != null)
+                return action;
+            return new Action(0 + ":" + 0 + ":" + Squares.RIGHT);
         }
         return new Action(Squares.PASS);
     }
