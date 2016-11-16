@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2914f512-4dba-41e6-b113-14efbd8a283c" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/DefiniteSquaresAgent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SquaresAnalyzer.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/MeroBob.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/DefiniteSquaresAgent.java" afterPath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/DefinitiveSquaresAgent.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/MeroBob.java" afterPath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/MeroBob.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/MiniMaxPlayer.java" afterPath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/MiniMaxPlayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/QuickSquaresPlayer.java" afterPath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/QuickSquaresPlayer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SimulatedBoard.java" afterPath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SimulatedBoard.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SquaresFather.java" afterPath="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SquaresFather.java" />
@@ -24,7 +22,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Cuadrito$SquaresMain.coverage" NAME="SquaresMain Coverage Results" MODIFIED="1477787095030" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Cuadrito$SquaresMain.coverage" NAME="SquaresMain Coverage Results" MODIFIED="1479269937204" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>agents.examples.squares.*</FILTER>
     </SUITE>
   </component>
@@ -48,8 +46,8 @@
       <file leaf-file-name="SquaresFather.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SquaresFather.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+            <state relative-caret-position="1513">
+              <caret line="89" column="13" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -57,23 +55,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SquaresAnalyzer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SquaresAnalyzer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DefiniteSquaresAgent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/DefiniteSquaresAgent.java">
+      <file leaf-file-name="DefinitiveSquaresAgent.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/DefinitiveSquaresAgent.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
-              <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+              <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -96,8 +82,8 @@
       <file leaf-file-name="QuickSquaresPlayer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/QuickSquaresPlayer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
-              <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="72" />
+            <state relative-caret-position="901">
+              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,11 +91,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SquaresMain.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SimulatedBoard.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SimulatedBoard.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SquaresMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SquaresMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="136">
+              <caret line="8" column="81" selection-start-line="8" selection-start-column="81" selection-end-line="8" selection-end-column="81" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -169,13 +165,14 @@
         <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/Dummy2Agent.java" />
         <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/Squares.java" />
         <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/MeroBob.java" />
-        <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SimulatedBoard.java" />
-        <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/QuickSquaresPlayer.java" />
         <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SquaresAnalyzer.java" />
         <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/MiniMaxPlayer.java" />
-        <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SquaresMain.java" />
-        <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SquaresFather.java" />
         <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/DefiniteSquaresAgent.java" />
+        <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SimulatedBoard.java" />
+        <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SquaresFather.java" />
+        <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/QuickSquaresPlayer.java" />
+        <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/DefinitiveSquaresAgent.java" />
+        <option value="$PROJECT_DIR$/src/unalcol/agents/examples/squares/SquaresMain.java" />
       </list>
     </option>
   </component>
@@ -366,8 +363,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -882,11 +879,12 @@
       <workItem from="1478738467878" duration="1587000" />
       <workItem from="1478829433186" duration="11169000" />
       <workItem from="1479074968545" duration="10699000" />
+      <workItem from="1479260471080" duration="8574000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86956000" />
+    <option name="totallyTimeSpent" value="95530000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -901,11 +899,13 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39116204" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2624811" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -916,7 +916,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1085,10 +1084,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
-          <folding>
-            <element signature="e#950#951#0" expanded="false" />
-            <element signature="e#977#978#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1125,7 +1120,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-102">
           <caret line="123" column="9" selection-start-line="123" selection-start-column="9" selection-end-line="123" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1133,7 +1127,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1887">
           <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1141,7 +1134,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-68">
           <caret line="28" column="57" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1149,7 +1141,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="284">
           <caret line="159" column="43" selection-start-line="159" selection-start-column="43" selection-end-line="159" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1157,7 +1148,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="3" column="3" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1165,9 +1155,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="105" column="10" selection-start-line="105" selection-start-column="10" selection-end-line="105" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1175,35 +1162,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SimulatedBoard.java">
+    <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SquaresMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/QuickSquaresPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
-          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="72" />
+          <caret line="8" column="81" selection-start-line="8" selection-start-column="81" selection-end-line="8" selection-end-column="81" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/DefiniteSquaresAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1219,19 +1188,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SquaresFather.java">
+    <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/QuickSquaresPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="31" column="36" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+        <state relative-caret-position="901">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SimulatedBoard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SquaresAnalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
+        <state relative-caret-position="114">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1239,13 +1216,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SquaresMain.java">
+    <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/SquaresFather.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state relative-caret-position="1513">
+          <caret line="89" column="13" selection-start-line="89" selection-start-column="13" selection-end-line="89" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/unalcol/agents/examples/squares/SI2/genkidama/DefinitiveSquaresAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="23" selection-start-line="14" selection-start-column="23" selection-end-line="14" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -14,6 +14,7 @@ abstract class SquaresFather implements AgentProgram {
     int size, linesAssigned;
     SquaresPercept percept;
     SimulatedBoard board;
+    boolean activateMiniMax;
 
     SquaresFather(String color) { this.color = color; }
 
@@ -55,15 +56,19 @@ abstract class SquaresFather implements AgentProgram {
             if( time == null){
                 time = s2;
                 board = new SimulatedBoard(size);
+                activateMiniMax = false;
             }
             else if( time.compareTo(s2) >= 0 )
                 time = s2;
-            else
+            else {
                 board = new SimulatedBoard(size);
+                activateMiniMax = false;
+            }
 
             if (size2 != size) {
                 size = size2;
                 board = new SimulatedBoard(size);
+                activateMiniMax = false;
             }
 
             percept = (SquaresPercept) p;
@@ -71,6 +76,12 @@ abstract class SquaresFather implements AgentProgram {
             Action action = play();
             if (action != null)
                 return action;
+            if( !activateMiniMax ) {
+                activateMiniMax = true;
+                action = play();
+                if (action != null)
+                    return action;
+            }
             return new Action(0 + ":" + 0 + ":" + Squares.RIGHT);
         }
         return new Action(Squares.PASS);

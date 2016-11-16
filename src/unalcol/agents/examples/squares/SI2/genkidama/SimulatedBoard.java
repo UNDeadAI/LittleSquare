@@ -45,7 +45,7 @@ class SimulatedBoard {
                 val <= 0 || val > BOTTOM || (values[i][j] & val) == val;
     }
 
-    private int lines(int i, int j) {
+    int lines(int i, int j) {
         int c = (values[i][j] & LEFT) == LEFT ? 1 : 0;
         c += (values[i][j] & TOP) == TOP ? 1 : 0;
         c += (values[i][j] & RIGHT) == RIGHT ? 1 : 0;
