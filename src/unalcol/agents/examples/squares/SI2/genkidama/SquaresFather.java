@@ -12,7 +12,7 @@ abstract class SquaresFather implements AgentProgram {
     String color;
     private String time;
     int size, linesAssigned;
-    SquaresPercept percept;
+    private SquaresPercept percept;
     SimulatedBoard board;
     boolean activateMiniMax;
 
@@ -23,6 +23,19 @@ abstract class SquaresFather implements AgentProgram {
     void act(SimulatedBoard b, int i, int j, int side, boolean turn) {
         boolean tmp = color.equals( Squares.WHITE );
         b.play( turn == tmp, i, j, side);
+    }
+
+    private void act2(boolean whiteTurn, String action, SimulatedBoard b) {
+        String[] code = action.split(":");
+        int i = Integer.parseInt(code[0]);
+        int j = Integer.parseInt(code[1]);
+        int side = 0;
+        if (code[2].equals(Squares.LEFT)) side = SimulatedBoard.LEFT;
+        if (code[2].equals(Squares.TOP)) side = SimulatedBoard.TOP;
+        if (code[2].equals(Squares.RIGHT)) side = SimulatedBoard.RIGHT;
+        if (code[2].equals(Squares.BOTTOM)) side = SimulatedBoard.BOTTOM;
+
+        b.play(whiteTurn, i, j, side);
     }
 
     void updateBoard(){
@@ -74,13 +87,17 @@ abstract class SquaresFather implements AgentProgram {
             percept = (SquaresPercept) p;
 
             Action action = play();
-            if (action != null)
+            if (action != null) {
+                act2( color.equals(Squares.WHITE), action.getCode(), board );
                 return action;
+            }
             if( !activateMiniMax ) {
                 activateMiniMax = true;
                 action = play();
-                if (action != null)
+                if (action != null) {
+                    act2( color.equals(Squares.WHITE), action.getCode(), board );
                     return action;
+                }
             }
             return new Action(0 + ":" + 0 + ":" + Squares.RIGHT);
         }

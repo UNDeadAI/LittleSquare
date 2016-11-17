@@ -8,7 +8,7 @@ public class DefinitiveSquaresAgent extends SquaresFather{
     private MiniMaxPlayer miniMaxPlayer;
     private QuickSquaresPlayer quickSquaresPlayer;
 
-    private int twoDepthLimit = 2 * 14 * 14 - (14*2), threeDepthLimit = 2 * 7 * 7 - (7*2),
+    private int twoDepthLimit = 2 * 14 * 14 - (14*2), threeDepthLimit = 2 * 8 * 8 - (8*2),
             fourDepthLimit = 2 * 4 * 4 - (4*2);
 
     public DefinitiveSquaresAgent(String color) {

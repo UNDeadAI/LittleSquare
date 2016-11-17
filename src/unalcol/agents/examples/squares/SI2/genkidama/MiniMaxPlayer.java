@@ -33,7 +33,6 @@ class MiniMaxPlayer extends SquaresAnalyzer {
         actions = new HashMap<>();
         int v = maxValue( Integer.MIN_VALUE, Integer.MAX_VALUE, father.board, 1 );
         Action a = actions.get( v );
-        act2( father.color.equals(Squares.WHITE), a.getCode(), father.board );
         return a;
     }
 

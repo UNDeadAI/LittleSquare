@@ -20,17 +20,4 @@ abstract class SquaresAnalyzer {
             return w - b;
         return b - w;
     }
-
-    void act2(boolean whiteTurn, String action, SimulatedBoard b) {
-        String[] code = action.split(":");
-        int i = Integer.parseInt(code[0]);
-        int j = Integer.parseInt(code[1]);
-        int side = 0;
-        if (code[2].equals(Squares.LEFT)) side = SimulatedBoard.LEFT;
-        if (code[2].equals(Squares.TOP)) side = SimulatedBoard.TOP;
-        if (code[2].equals(Squares.RIGHT)) side = SimulatedBoard.RIGHT;
-        if (code[2].equals(Squares.BOTTOM)) side = SimulatedBoard.BOTTOM;
-
-        b.play(whiteTurn, i, j, side);
-    }
 }
